@@ -100,7 +100,7 @@
             <div v-else>
 
                <div class="flex items-center mb-4 text-white font-semibold ml-2 ">
-                  <p>  {{ auth.user.credits }} </p>
+                  <p >  {{ auth.user.credits }} </p>
                   <CreditsIcon class="w-4 mx-1" />
                   <p>Credito</p>
                </div>
