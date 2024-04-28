@@ -1,9 +1,9 @@
 <template>
     <Layout>
         <template #main>
-            <section class="flex gap-4 flex-wrap h-screen justify-between flex-col p-4 overflow-hidden">
+            <section class="relative flex gap-4 flex-wrap h-screen justify-between flex-col p-4 overflow-hidden">
 
-                <div class="flex justify-between h-full flex-col w-4/6">
+                <div class="flex w-4/6 max-md:w-full justify-between h-full flex-col ">
                     <div ref="scrollableDiv" class=" overflow-y-scroll mb-4 rounded-md pr-2">
                         <div v-for="image in garmentDesign.garmentDesignsChat" class="bg-gray-100 mt-4 rounded-md p-4">
                             <img @click="openImageModal(image)" class="mx-auto w-2/3 rounded-md" :key="image.id"
@@ -16,6 +16,10 @@
                             </p>
                         </div>
                     </div>
+                    <ErrorAlert class="hidden max-md:flex" v-if="garmentDesign.createGarmentDesignErrors"
+                        :error="garmentDesign.createGarmentDesignErrors"
+                        @closeErrorAlert="garmentDesign.clearCreateGarmentDesignErrors" />
+
                     <form class="" @submit.prevent="generateImage">
 
                         <textarea v-model="form.prompt" id="message" rows="4"
@@ -44,7 +48,7 @@
                     </form>
                 </div>
 
-                <div class="w-2/6 ">
+                <div class="max-md:hidden w-2/6 ">
                     <div class="container ">
                         <div class="max-w-md bg-slate-800 text-white rounded-lg shadow-lg overflow-hidden mx-auto">
 
@@ -59,7 +63,7 @@
                             </div>
 
                             <div v-if="survey.surveyPending.length > 0"
-                                class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                                class="flex items-center mx-4 p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 "
                                 role="alert">
                                 <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -75,7 +79,7 @@
                             </div>
 
                             <div v-else
-                                class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                                class="flex items-center p-4 mb-4 mx-4 text-sm text-green-800 rounded-lg bg-green-50 "
                                 role="alert">
                                 <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -87,36 +91,26 @@
                                     <span class="font-medium">Perfecto!</span> No tienes encuestas pendientes.
                                 </div>
                             </div>
-                                                    
+
+                            <ErrorAlert class="mx-4" v-if="garmentDesign.createGarmentDesignErrors"
+                            :error="garmentDesign.createGarmentDesignErrors"
+                            @closeErrorAlert="garmentDesign.clearCreateGarmentDesignErrors" />
+
                         </div>
 
-                        
-
-                        <div id="alert-2" v-if="garmentDesign.createGarmentDesignErrors"
-                            class="flex  mt-8 items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50"
-                            role="alert">
-                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                            </svg>
-                            <span class="sr-only">Info</span>
-                            <div class="ms-3 text-sm font-medium mr-2">
-                                {{ garmentDesign.createGarmentDesignErrors.message }}
-                            </div>
-                            <button type="button" @click="garmentDesign.clearCreateGarmentDesignErrors"
-                                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8"
-                                data-dismiss-target="#alert-2" aria-label="Close">
-                                <span class="sr-only">Close</span>
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                </svg>
-                            </button>
-                        </div>
                     </div>
                 </div>
+
+                <button v-if="survey.surveyPending.length > 0" type="button"
+                    @click="openSurveyModal(survey.surveyPending[0])"
+                    class="hidden absolute top-8 right-4 rounded-full max-md:inline-flex items-center p-3 text-sm font-medium text-center text-white bg-slate-700  hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-900 ">
+                    <NotificationIcon />
+                    <span class="sr-only">Notifications</span>
+                    <div
+                        class="absolute animate-pulse inline-flex items-center justify-center w-3 h-3 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full top-2 end-1">
+
+                    </div>
+                </button>
 
             </section>
         </template>
@@ -124,30 +118,27 @@
 
     <VueFinalModal v-model="isShowImageModalOpen" content-transition="vfm-fade" overlay-transition="vfm-fade"
         teleport-to="body" class="flex justify-center items-center"
-        content-class="max-w-6xl flex bg-white border rounded-lg space-y-2  overflow-auto h-5/6">
-        <img :src="img.url" :alt="img.description" class="w-full  object-cover" />
+        content-class="max-w-6xl flex bg-white border rounded-lg space-y-2  overflow-auto md:h-5/6">
+        <img width="1024" height="1024" :src="img.url" :alt="img.description" class="w-full" />
     </VueFinalModal>
 
     <VueFinalModal v-model="isSurveyModalOpen" content-transition="vfm-fade" overlay-transition="vfm-fade"
         teleport-to="body" class="flex justify-center items-center"
-        content-class="max-w-6xl h-5/6 bg-white border rounded-lg space-y-2 overflow-auto ">
-
+        content-class="max-w-6xl h-5/6 bg-white border rounded-lg space-y-2 overflow-y-auto">
         <SurveyView :img="img" @closeSurveyModal="() => isSurveyModalOpen = false" />
     </VueFinalModal>
-
-    <ModalsContainer />
-
-
 
 </template>
 <script setup>
 import SurveyView from '@/views/SurveyView.vue';
+import ErrorAlert from '@/components/ErrorAlert.vue';
+import NotificationIcon from '@/components/icons/NotificationIcon.vue';
 
 import { useGarmentDesignStore } from '@/stores/garmentDesign';
 import { useSurveyStore } from '@/stores/survey';
 import { useAuthStore } from '@/stores/auth';
 
-import { ModalsContainer, VueFinalModal } from 'vue-final-modal'
+import { VueFinalModal } from 'vue-final-modal'
 import Layout from '@/layouts/Layout.vue';
 import { onMounted, ref } from 'vue';
 
@@ -179,12 +170,12 @@ const scrollToBottom = () => {
     scrollableDiv.value.scrollTop = scrollableDiv.value.scrollHeight;
 }
 
-const generateImage = async () => {    
+const generateImage = async () => {
     await garmentDesign.createGarmentDesign(form.value);
     await survey.getSurveyStatus();
     await getImages();
     scrollToBottom();
-    await auth.getUser();   
+    await auth.getUser();
 }
 
 const getImages = async () => {

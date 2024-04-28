@@ -1,8 +1,6 @@
 <template>
-
-    <div class="flex justify-between p-4 w-1/2 mx-auto ">
+    <div class="flex justify-between p-4 w-1/2 max-md:w-11/12 mx-auto">
         <label class="flex-1 text-gray-700 font-bold">{{ label }}</label>
-
         <div class="flex-1 flex justify-around">
             <Emoji1 @click="setSelected(0)" :class="{ 'rounded-full bg-slate-800 text-white' : properties[0].isSelected }"
                 classNames="p-1 w-12 h-12 hover:scale-110 transition duration-75" />
@@ -16,7 +14,6 @@
                 classNames="p-1 w-12 h-12 hover:scale-110 transition duration-75" />
         </div>
     </div>
-
 </template>
 <script setup>
 import Emoji1 from '@/components/icons/Emoji1.vue';

@@ -1,13 +1,11 @@
 <template>
     <div class="flex h-screen">
-        
-        <aside class="min-w-64">
-            
-            <Nabvar />
-            
-        </aside>
-        
-        <main class="w-full flex flex-col mx-4">
+
+        <Nabvar />
+
+        <main class="w-full flex flex-col ">
+            <MobileNavbar />
+          
             <slot name="main" />
         </main>
     </div>
@@ -15,4 +13,5 @@
 </template>
 <script setup>
 import Nabvar from '@/components/Navbar.vue';
+import MobileNavbar from '@/components/MobileNavbar.vue';
 </script>

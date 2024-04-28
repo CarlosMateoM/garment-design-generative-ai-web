@@ -1,16 +1,11 @@
 <template>
 
-    <div class="flex mb-8 bg-slate-800 p-2">
-        <img :src="img.url" :alt="img.description" class="w-1/2 rounded-md  object-cover" />
-        <div class="relative mx-4">
-            <h2 class="mb-2 text-2xl text-white font-bold">Descripción</h2>
-            <p class="text-white"> {{ img.prompt }}</p>
-            <a class="absolute top-2 right-0 bg-green-600 text-white font-bold px-2 rounded-md"
-                href="#survey">Encuesta</a>
-        </div>
+    <div class="flex max-sm:flex-col  m-2 p-4 max-w-5xl bg-white  rounded-lg space-y-4 ">
+        <ImageDesignModal :img="img" />
     </div>
 
-    <h3 id="survey" class="font-bold text-slate-900 p-4 text-2xl text-center">Tu opinión es importante para nosostros
+    <h3 id="survey" class="font-bold text-slate-900 p-4 text-2xl text-center">
+        Tu opinión es importante para nosostros
     </h3>
 
     <RatingDesign label="Originalidad" formName="originality" @ratingValue="setRatingValue" />
@@ -26,34 +21,12 @@
     <RatingDesign label="Viabilidad" formName="feasibility" @ratingValue="setRatingValue" />
 
     <textarea id="message" rows="4" cols="70" v-model="form.feedback"
-        class="block outline-none p-2.5 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 focus:ring-slate-800 focus:border-slate-800 "
+        class="block max-md:w-11/12 mx-auto outline-none p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 focus:ring-slate-800 focus:border-slate-800 "
         placeholder="¡Queremos escucharte! Comparte tus pensamientos sobre el diseño, especialmente lo más importante para ti."></textarea>
 
 
-        <div id="alert-2" v-if="survey.surveyResponseErrors" 
-                    class="flex w-1/2 mx-auto items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50"
-                    role="alert">
-                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                    </svg>
-                    <span class="sr-only">Info</span>
-                    <div class="ms-3 text-sm font-medium mr-2">
-                        {{ survey.surveyResponseErrors.message }}
-                    </div>
-                    <button type="button" @click="survey.clearSurveyResponseErrors"
-                        class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8"
-                        data-dismiss-target="#alert-2" aria-label="Close">
-                        <span class="sr-only">Close</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                    </button>
-                </div>
-
+    <ErrorAlert class="mx-4" v-if="survey.surveyResponseErrors" :error="survey.surveyResponseErrors"
+        @closeErrorAlert="survey.clearSurveyResponseErrors" />
 
     <div class="flex w-full p-4">
         <button v-if="!surveyResponsed" @click="submit" :disabled="survey.surveyStatusLoading"
@@ -75,9 +48,7 @@
 
         <button v-else @click="emits('closeSurveyModal')"
             class="px-4 py-2 mt-2 outline-none mx-auto border-2 border-slate-900 focus:border-slate-800 text-white font-bold bg-slate-800 rounded-md hover:bg-slate-900">
-
-            Gracias por tu opinión, ¡tu feedback es muy valioso! haz click para cerrar
-
+            ¡Gracias por responder! Haz click para cerrar la encuesta.
         </button>
 
     </div>
@@ -85,7 +56,9 @@
 
 
 <script setup>
+import ImageDesignModal from '@/components/ImageDesignModal.vue';
 import RatingDesign from '@/components/RatingDesign.vue';
+import ErrorAlert from '@/components/ErrorAlert.vue';
 
 import { useSurveyStore } from '@/stores/survey';
 import { ref } from 'vue';
@@ -116,8 +89,6 @@ const setRatingValue = (formName, value) => {
 };
 
 const submit = async () => {
-
-
 
     const response = await survey.createSurveyResponse(form.value);
 
