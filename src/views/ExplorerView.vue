@@ -1,7 +1,12 @@
 <template>
     <Layout>
         <template #main>
-            <section class="mx-4 my-14">
+
+            <button class="flex justify-center border" >
+                <RefreshIcon :class="{'animate-spin': garmentDesign.garmentDesignsLoading }" class="w-8 h-8 my-4 text-slate-800" @click="getGarmentDesigns" />
+            </button>
+
+            <section class="mx-4 my-10">
                 <h1 class="w-full text-center m-4 font-bold text-3xl text-slate-800">
                     Explora el Mundo de las Prendas Generadas por AI
                 </h1>
@@ -34,6 +39,7 @@ import { VueFinalModal } from 'vue-final-modal'
 import { useGarmentDesignStore } from '@/stores/garmentDesign';
 import ImageDesignCard from '@/components/ImageDesignCard.vue';
 import ImageDesignModal from '@/components/ImageDesignModal.vue';
+import RefreshIcon from '@/components/icons/RefreshIcon.vue';
 import Layout from '@/layouts/Layout.vue';
 import { ref, onMounted } from 'vue';
 
