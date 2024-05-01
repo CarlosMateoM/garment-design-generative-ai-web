@@ -3,9 +3,11 @@
         <template #main>
             <section class="mx-4 my-14">
                 <h1 class="w-full text-center m-4 font-bold text-3xl text-slate-800">
-                    Explora el Mundo de las Prendas Generadas por IA
+                    Explora el Mundo de las Prendas Generadas por AI
                 </h1>
-                <p class="w-full text-center text-slate-600">Estilos personalizados, impulsado por la innovación tecnológica.</p>
+                <p class="w-full text-center text-slate-600">
+                    Estilos personalizados, impulsado por la innovación tecnológica.
+                </p>
             </section>
 
             <section class="mx-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -25,7 +27,6 @@
     >
         <ImageDesignModal :img="img" />
     </VueFinalModal>
-
 
 </template>
 <script setup>

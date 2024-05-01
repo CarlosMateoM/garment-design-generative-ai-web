@@ -1,6 +1,7 @@
 <template>
-    <div class="flex justify-between p-4 w-1/2 max-md:w-11/12 mx-auto">
-        <label class="flex-1 text-gray-700 font-bold">{{ label }}</label>
+    <div class="flex flex-wrap justify-between p-4 w-1/2 max-md:w-11/12 mx-auto">
+        <HelpCircleIcon @click="() => emits('openRatingHelp', label)" class="h-5 w-5 mr-1 text-slate-900 hover:text-red-600 " />
+        <label class="flex-1 min-w-28 text-gray-700 font-bold">{{ label }}</label>
         <div class="flex-1 flex justify-around">
             <Emoji1 @click="setSelected(0)" :class="{ 'rounded-full bg-slate-800 text-white' : properties[0].isSelected }"
                 classNames="p-1 w-12 h-12 hover:scale-110 transition duration-75" />
@@ -16,6 +17,7 @@
     </div>
 </template>
 <script setup>
+import HelpCircleIcon from '@/components/icons/HelpCircleIcon.vue';
 import Emoji1 from '@/components/icons/Emoji1.vue';
 import Emoji2 from '@/components/icons/Emoji2.vue';
 import Emoji3 from '@/components/icons/Emoji3.vue';
@@ -24,9 +26,7 @@ import Emoji5 from '@/components/icons/Emoji5.vue';
 
 import { ref } from 'vue';
 
-
-
-const emits = defineEmits(['ratingValue']);
+const emits = defineEmits(['ratingValue', 'openRatingHelp']);
 
 const props = defineProps({
     label: {
@@ -38,6 +38,17 @@ const props = defineProps({
         required: true
     }
 });
+
+const setSelected = (index) => {
+   properties.value.forEach((element, i) => {
+        if(i == index) {
+            element.isSelected = true;
+            emits('ratingValue', props.formName, element.value);
+        } else {
+            element.isSelected = false;
+        }
+   });
+}
 
 
 const properties = ref([
@@ -62,17 +73,4 @@ const properties = ref([
         value: 5
     }
 ]);
-
-const setSelected = (index) => {
-   properties.value.forEach((element, i) => {
-        if(i == index) {
-            element.isSelected = true;
-            emits('ratingValue', props.formName, element.value);
-        } else {
-            element.isSelected = false;
-        }
-   });
-}
-
-
 </script>

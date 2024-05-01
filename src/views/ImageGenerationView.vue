@@ -124,8 +124,9 @@
 
     <VueFinalModal v-model="isSurveyModalOpen" content-transition="vfm-fade" overlay-transition="vfm-fade"
         teleport-to="body" class="flex justify-center items-center"
-        content-class="max-w-6xl h-5/6 bg-white border rounded-lg space-y-2 overflow-y-auto">
+        content-class="relative max-w-6xl h-5/6 bg-white border rounded-lg space-y-2 overflow-y-auto">
         <SurveyView :img="img" @closeSurveyModal="() => isSurveyModalOpen = false" />
+      
     </VueFinalModal>
 
 </template>
@@ -133,6 +134,7 @@
 import SurveyView from '@/views/SurveyView.vue';
 import ErrorAlert from '@/components/ErrorAlert.vue';
 import NotificationIcon from '@/components/icons/NotificationIcon.vue';
+
 
 import { useGarmentDesignStore } from '@/stores/garmentDesign';
 import { useSurveyStore } from '@/stores/survey';
