@@ -1,6 +1,6 @@
 {
     "globalHeaders": {
-        "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'; img-src 'self' data https://mateodevelopment.online"
+        "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'; img-src 'self' data https://mateodevelopment.online wss://mateodevelopment.online"
     },
     "navigationFallback": {
         "rewrite": "/index.html",
