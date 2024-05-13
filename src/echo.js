@@ -6,9 +6,9 @@ export function initializeEcho() {
     return new Echo({
         broadcaster: 'reverb',
         key: 'ykoqn4dupoltad6jty20',
-        wsHost: "mateodevelopment.online/websocket",
-        wsPort: 8080,
-        forceTLS: false,
+        wsHost: "mateodevelopment.online",
+        wsPort: 443,
+        forceTLS: true,
         encrypted: true,
         disableStats: true,
         authorizer: (channel, options) => {
