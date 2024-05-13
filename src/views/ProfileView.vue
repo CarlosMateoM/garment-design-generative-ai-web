@@ -50,11 +50,7 @@ const form = ref({
 
 
 onMounted(async () => {
-
-    if(!auth.user) {
-        await auth.getUser();
-    }
-    
+    if (!auth.user) { await auth.getUser() }
     form.value = auth.user;
 });
 

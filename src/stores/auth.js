@@ -8,6 +8,8 @@ export const useAuthStore = defineStore("auth", () => {
 
     const user = ref(null);
 
+    
+
     const {
         request: getUser,
         loading: userLoading,

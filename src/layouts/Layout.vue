@@ -14,4 +14,14 @@
 <script setup>
 import Nabvar from '@/components/Navbar.vue';
 import MobileNavbar from '@/components/MobileNavbar.vue';
+import { onBeforeMount } from 'vue';
+import { useAuthStore } from '@/stores/auth';
+
+const auth = useAuthStore();
+
+onBeforeMount(async () => {
+  if (!auth.user) {
+    await auth.getUser();
+  }
+});
 </script>

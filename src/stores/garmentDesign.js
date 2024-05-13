@@ -42,7 +42,6 @@ export const useGarmentDesignStore = defineStore("garmentDesign", () => {
     } = useRequest(
         async (form) => {
             const response = await axios.post("garment-designs", form);
-            garmentDesigns.value.unshift(response.data);
             return response;
         }
     );

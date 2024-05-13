@@ -102,7 +102,6 @@ import LoginIcon from '@/components/icons/LoginIcon.vue';
 import SinupIcon from '@/components/icons/SinupIcon.vue';
 
 import { useAuthStore } from '@/stores/auth';
-import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -111,17 +110,5 @@ const auth = useAuthStore();
 const logout = async () => {
    await auth.logout();
 }
-
-onMounted(async () => {
-   if (!auth.user) {
-      await auth.getUser();
-   }
-})
-
-
-
-
-
-
 
 </script>
