@@ -10,6 +10,11 @@ const router = createRouter({
       component: () => import('@/views/ExplorerView.vue')
     },
     {
+      path: '/explorar',
+      name: 'explorer',
+      component: () => import('@/views/ExplorerView2.vue')
+    },
+    {
       path: '/login',
       name: 'Login',
       component: () => import('@/views/auth/LoginView.vue')
