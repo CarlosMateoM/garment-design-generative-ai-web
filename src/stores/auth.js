@@ -8,8 +8,6 @@ export const useAuthStore = defineStore("auth", () => {
 
     const user = ref(null);
 
-    
-
     const {
         request: getUser,
         loading: userLoading,
@@ -39,6 +37,22 @@ export const useAuthStore = defineStore("auth", () => {
     );
 
     const {
+        request: register,
+        loading: registerLoading,
+        errors: registerErrors,
+        clearErrors: clearRegisterErrors
+    } = useRequest(
+        async (form) => {
+            await axios.get("sanctum/csrf-cookie");
+            const response = await axios.post("register", form);
+            user.value = response.data;
+            router.push({name: "Home"});
+            return response;
+        }
+    );
+    
+
+    const {
         request: logout,
         loading: logoutLoading,
         errors: logoutErrors,
@@ -62,6 +76,11 @@ export const useAuthStore = defineStore("auth", () => {
         loginLoading,
         loginErrors,
         clearLoginErrors,
+
+        register,
+        registerLoading,
+        registerErrors,
+        clearRegisterErrors,
 
         logout,
         logoutLoading,

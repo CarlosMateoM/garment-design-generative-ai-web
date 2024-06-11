@@ -181,7 +181,7 @@ const generateImage = async () => {
 
 const getImages = async () => {
     const response = await garmentDesign.getGarmentDesigns(`filter[user_id]=${auth.user.id}`);
-    garmentDesign.garmentDesignsChat = response.data;
+    garmentDesign.garmentDesignsChat = response.data.data;
     scrollToBottom();
 }
 
@@ -189,6 +189,7 @@ const getImages = async () => {
 onMounted(async () => {
 
     if (!auth.user) { await auth.getUser() }
+    
     echo.private(`image-processed.${auth.user.id}`)
         .listen('ImageProcessedEvent', async (e) => {
             garmentDesign.createGarmentDesignLoading = false;

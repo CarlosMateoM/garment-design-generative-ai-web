@@ -7,17 +7,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: () => import('@/views/ExplorerView.vue')
+      component: () => import('@/views/ExplorerView2.vue')
     },
     {
-      path: '/explorar',
-      name: 'explorer',
+      path: '/home',
+      name: 'Root',
       component: () => import('@/views/ExplorerView2.vue')
+    },
+    {
+      path: '/explore',
+      name: 'Explore',
+      component: () => import('@/views/ExploreView.vue')
     },
     {
       path: '/login',
       name: 'Login',
       component: () => import('@/views/auth/LoginView.vue')
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('@/views/auth/RegisterView.vue')
     },
     {
       path: '/generacion-de-prendas',
