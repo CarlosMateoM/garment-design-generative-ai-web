@@ -54,11 +54,11 @@ import PrimaryButton from '@/components/PrimaryButton.vue';
 const auth = useAuthStore();
 
 const form = ref({
-    first_name: 'Carlos Mateo',
-    last_name: 'Martinez Guerra',
-    email: 'carlosmateo484@gmail.com',
-    password: '12345678',
-    password_confirmation: '12345678'
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
 });
 
 const register = async () => {
