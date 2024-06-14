@@ -1,4 +1,4 @@
-import  Axios  from "axios";
+import Axios from "axios";
 
 const axios = Axios.create({
     baseURL: "https://api.designfashionai.com/api/v1",
@@ -9,5 +9,6 @@ const axios = Axios.create({
     withCredentials: true,
     withXSRFToken: true,
 });
+
 
 export default axios;

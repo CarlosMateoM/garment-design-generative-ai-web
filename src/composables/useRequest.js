@@ -21,6 +21,9 @@ export const useRequest = (callback) => {
             if (error.response.status === 401) {
                 auth.user = null;
                 router.push({ name: "Home" });
+            } else if (error.response.status === 409) {
+                
+                router.push({ name: "VerifyEmail" });
             }
 
             throw error;

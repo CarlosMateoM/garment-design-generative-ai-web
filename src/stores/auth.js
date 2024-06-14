@@ -30,8 +30,15 @@ export const useAuthStore = defineStore("auth", () => {
         async (form) => {
             await axios.get("sanctum/csrf-cookie");
             const response = await axios.post("login", form);
-            user.value = response.data;
-            router.push({name: "Home"});
+            await getUser();
+
+            if(user.value.email_verified_at === null){
+                
+                router.push({name: "VerifyEmail"});
+            } else {
+                router.push({name: "Home"});
+            }
+
             return response;
         }
     );
@@ -46,10 +53,24 @@ export const useAuthStore = defineStore("auth", () => {
             await axios.get("sanctum/csrf-cookie");
             const response = await axios.post("register", form);
             user.value = response.data;
-            router.push({name: "Home"});
+            router.push({name: "VerifyEmail"});
             return response;
         }
     );
+
+    const {
+        request: sendVerificationEmail,
+        loading: sendVerificationEmailLoading,
+        errors: sendVerificationEmailErrors,
+        clearErrors: clearSendVerificationEmailErrors
+    } = useRequest(
+        async () => {
+            const response = await axios.post("email/verification-notification");   
+            if(response.data.status === "already-verified"){
+                router.push({name: "Home"});
+            }
+        }
+    )
     
 
     const {
@@ -81,6 +102,11 @@ export const useAuthStore = defineStore("auth", () => {
         registerLoading,
         registerErrors,
         clearRegisterErrors,
+
+        sendVerificationEmail,
+        sendVerificationEmailLoading,
+        sendVerificationEmailErrors,
+        clearSendVerificationEmailErrors,
 
         logout,
         logoutLoading,
