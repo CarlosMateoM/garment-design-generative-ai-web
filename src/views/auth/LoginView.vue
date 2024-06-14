@@ -43,8 +43,8 @@ import { ref } from 'vue';
 const auth = useAuthStore();
 
 const form = ref({
-    email: 'carlosmateo484@gmail.com',
-    password: '12345678'
+    email: '',
+    password: ''
 });
 
 const login = async () => {
