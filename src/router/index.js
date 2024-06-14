@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import('@/views/auth/RegisterView.vue')
     },
     {
+      path: '/verify-email',
+      name: 'VerifyEmail',
+      component: () => import('@/views/auth/VerifyEmailView.vue')
+    },
+    {
       path: '/generacion-de-prendas',
       name: 'GarmentDesign',
       preserveScrollPosition: true,

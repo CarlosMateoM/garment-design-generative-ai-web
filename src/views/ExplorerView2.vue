@@ -33,9 +33,12 @@
         <ImageDesignModal :img="img" />
     </VueFinalModal>
 
+    <EmailVerifiedModal /> 
+
 </template>
 <script setup>
 import { VueFinalModal } from 'vue-final-modal'
+import EmailVerifiedModal from '@/views/auth/EmailVerifiedModal.vue';
 import { useGarmentDesignStore } from '@/stores/garmentDesign';
 import ImageDesignCard from '@/components/ImageDesignCard.vue';
 import ImageDesignModal from '@/components/ImageDesignModal.vue';
