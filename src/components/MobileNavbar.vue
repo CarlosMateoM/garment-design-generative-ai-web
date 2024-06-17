@@ -3,8 +3,7 @@
         <div @click="" class="flex items-center">
             <img width="360" height="360" src="/logo.png" alt="design ai logo" class="w-10" />
             <div class="ml-2">
-                <p class="text-2xl text-white font-bold">DESIGN AI</p>
-                <p class="text-xs text-gray-200 font-normal">Diseño de prendas</p>
+                <p class="text-xl text-white font-bold">DESIGN FASHON AI</p>
             </div>
         </div>
 
