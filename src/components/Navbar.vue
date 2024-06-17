@@ -12,8 +12,7 @@
                   <div class="flex items-center mb-8">
                      <img src="/logo.png" alt="Logo" class="w-10" />
                      <div>
-                        <p class="text-2xl text-white ml-2 font-bold">DESIGN AI</p>
-                        <p class="text-xs font-normal ml-2 text-gray-200">Diseño de prendas</p>
+                        <p class="text-xl text-white ml-2 font-bold">DESIGN FASHION AI</p>
                      </div>
                   </div>
                   <button @click="toggleNavbar"
