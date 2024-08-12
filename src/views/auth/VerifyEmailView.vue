@@ -52,7 +52,6 @@ import { useAuthStore } from '@/stores/auth';
 import { onMounted, ref } from 'vue';
 import router from '@/router';
 
-
 const auth = useAuthStore();
 
 const visible = ref(false);
