@@ -3,7 +3,7 @@
         <img @click="() => emits('showImage', image)"
             width="1024"
             height="1024"
-            :src="image.url" 
+            :src="image?.images[0]?.url" 
             :alt="image.description" 
             class="w-full h-69 object-cover"
             loading="lazy" 

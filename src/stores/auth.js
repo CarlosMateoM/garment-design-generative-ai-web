@@ -15,9 +15,11 @@ export const useAuthStore = defineStore("auth", () => {
         clearErrors: clearUserErrors
     } = useRequest(
         async () => {
-            const response = await axios.get("user");
-            user.value = response.data;
-            return response;
+            if(!user.value){
+                const response = await axios.get("user");
+                user.value = response.data;
+                return response;
+            } 
         }
     );
    
@@ -29,14 +31,16 @@ export const useAuthStore = defineStore("auth", () => {
     } = useRequest(
         async (form) => {
             await axios.get("sanctum/csrf-cookie");
+            
             const response = await axios.post("login", form);
+
             await getUser();
 
             if(user.value.email_verified_at === null){
                 
                 router.push({name: "VerifyEmail"});
             } else {
-                router.push({name: "Home"});
+                router.push({name: "home"});
             }
 
             return response;

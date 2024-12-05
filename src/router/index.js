@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import Index from '@/views/design/Index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: () => import('@/views/ExplorerView2.vue')
+      name: 'home',
+      component: () => import('@/views/HomeView.vue')
     },
     {
-      path: '/home',
-      name: 'Root',
-      component: () => import('@/views/ExplorerView2.vue')
+      path: '/generations',
+      name: 'generations',
+      component: Index
     },
     {
       path: '/explore',
@@ -35,25 +35,21 @@ const router = createRouter({
       component: () => import('@/views/auth/VerifyEmailView.vue')
     },
     {
-      path: '/generacion-de-prendas',
-      name: 'GarmentDesign',
-      preserveScrollPosition: true,
-      component: () => import('@/views/ImageGenerationView.vue')
-      
-    },
-    {
       path: '/perfil',
       name: 'Profile',
-      component: () => import('@/views/ProfileView.vue')
-      
+      component: () => import('@/views/auth/ProfileView.vue')
     },
-    
     {
-      path: '/:pathMatch(.*)*',
-      name: 'NotFound',
-      
+      path: '/diseno/:id',
+      name: 'design.show',
+      component: () => import('@/views/design/Design.vue')
+    },
+    {
+      path: '/diseno/procesando',
+      name: 'design.processing',
+      component: () => import('@/views/design/DesignProcessing.vue')
     }
   ]
-})
+});
 
 export default router

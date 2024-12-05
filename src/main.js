@@ -4,8 +4,8 @@ import 'vue-final-modal/style.css'
 import Pusher from 'pusher-js';
 
 import { createApp } from 'vue'
-import { createVfm } from 'vue-final-modal'
 import { createPinia } from 'pinia'
+import { createVfm } from 'vue-final-modal'
 
 import App from './App.vue'
 import router from './router'

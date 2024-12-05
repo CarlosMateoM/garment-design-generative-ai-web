@@ -1,62 +1,56 @@
 <template>
     <PageLayaout>
         <template v-slot:main>
-        <main>
-            <section class="pt-12">
-                <div class="flex flex-col justify-center mb-8">
+
+            <main>
+
+                <section class="flex flex-col justify-center my-8 space-y-6">
                     <h2
-                        class="text-center uppercase text-5xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
+                        class="text-center uppercase text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
                         Diseño de Prendas de Vestir
                     </h2>
 
-                    <p class="text-center font-semibold text-xl text-white/90 my-4  ">
-                        únicas y personalizadas, utilizando la inteligencia artificial.
+                    <p class="text-center font-semibold text-xl text-white/90">
+                        únicas y personalizadas, utilizando inteligencia artificial.
                     </p>
 
-                    <div class="mx-auto">
-                        <RouterLink to="/register"
-                            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200">
-                            <span
-                                class="relative px-8 py-2.5 transition-all ease-in duration-75 text-white bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                Registrate
-                            </span>
-                        </RouterLink>
-                    </div>
-                </div>
 
-                <div class="flex flex-wrap justify-center items-center">
+                    <RouterLink to="/register"
+                        class="text-gray-800 mx-auto max-w-32 bg-white hover:bg-white/90 font-medium rounded-lg text-sm px-5 py-2.5 ">
+                        Registrarse
 
-                    <img class="min-w-64 w-1/3 object-cover" :src="currentImage.src" :alt="currentImage.alt">
+                    </RouterLink>
 
-                    <div class="min-w-64 p-1 w-full m-4 md:w-1/3 rounded-xl text-white font-sans ">
-                        <div class="bg-slate-900  rounded-xl p-4 text-sm">
-                            <p
-                                class="text- mb-2 text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
-                                Describe tu próximo diseño</p>
-                            <VueWriter class="border bg-slate-800 border-gray-700 rounded-lg p-4" :array="prompts"
-                                :eraseSpeed="10" :typeSpeed="50" :delay="3000" :iterations="'1'" @typed="typed" />
 
-                            <div class="flex justify-end">
+                    <div class="flex flex-wrap justify-center items-center">
 
-                                <button type="button"
-                                    class="flex items-center text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-2">
-                                    Generar
-                                    <svg class="ml-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z" />
-                                    </svg>
-                                </button>
+                        <img class="min-w-64 w-1/3 object-cover" :src="currentImage.src" :alt="currentImage.alt">
+
+                        <div class="min-w-64 p-1 w-full m-4 md:w-1/3 rounded-xl text-white font-sans ">
+                            <div class="bg-slate-900  rounded-xl p-4 text-sm">
+                                <p
+                                    class="text- mb-2 text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
+                                    Describe tu próximo diseño</p>
+                                <VueWriter class="border bg-slate-800 border-gray-700 rounded-lg p-4" :array="prompts"
+                                    :eraseSpeed="10" :typeSpeed="50" :delay="3000" :iterations="'1'" @typed="typed" />
+
+                                <div class="flex justify-end">
+
+                                    <button type="button"
+                                        class="flex items-center text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-2">
+                                        Generar
+                                        <SparklesIcon />
+                                    </button>
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
-                </div>
+
+                </section>
 
 
-                <div class="md:mt-18 p-4">
+                <section class="md:mt-18 p-4">
                     <div class="container mx-auto">
                         <h1 class="text-4xl  text-white my-12 font-bold  text-center">
                             Saca el Máximo Provecho a tus Diseños
@@ -80,7 +74,8 @@
                                 <h2
                                     class="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
                                     E-commerce</h2>
-                                <p class="text-white">Implementa las imágenes en sitios web de comercio electrónico para
+                                <p class="text-white">Implementa las imágenes en sitios web de comercio electrónico
+                                    para
                                     ofrecer a los
                                     clientes visualizaciones claras y detalladas de las prendas disponibles.</p>
                             </div>
@@ -90,10 +85,12 @@
                                 <h2
                                     class="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
                                     Prototipos y Muestras</h2>
-                                <p class="text-white">Genera prototipos visuales para revisar y ajustar diseños antes de
+                                <p class="text-white">Genera prototipos visuales para revisar y ajustar diseños
+                                    antes de
                                     la
                                     producción
-                                    física, ahorrando tiempo y recursos en el proceso de desarrollo de productos.</p>
+                                    física, ahorrando tiempo y recursos en el proceso de desarrollo de productos.
+                                </p>
                             </div>
 
                             <!-- Card 4 -->
@@ -101,7 +98,8 @@
                                 <h2
                                     class="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
                                     Redes Sociales y Publicidad</h2>
-                                <p class="text-white">Publica las imágenes en redes sociales y campañas publicitarias
+                                <p class="text-white">Publica las imágenes en redes sociales y campañas
+                                    publicitarias
                                     para
                                     promover nuevas
                                     colecciones y captar la atención del público objetivo.</p>
@@ -122,7 +120,8 @@
                                 <h2
                                     class="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
                                     Estudios de Mercado</h2>
-                                <p class="text-white">Usa las imágenes para realizar encuestas y estudios de mercado,
+                                <p class="text-white">Usa las imágenes para realizar encuestas y estudios de
+                                    mercado,
                                     obteniendo feedback
                                     valioso sobre nuevos diseños y preferencias de los consumidores.</p>
                             </div>
@@ -130,53 +129,54 @@
                         </div>
                     </div>
 
-                </div>
-            </section>
-        </main>
+                </section>
 
-        
-    </template>
+            </main>
+        </template>
     </PageLayaout>
 </template>
 
 <script setup>
-import PageLayaout from '@/layouts/PageLayaout.vue';
-import { VueWriter } from 'vue-writer';
-import { ref } from 'vue';
+    import SparklesIcon from '@/components/icons/SparklesIcon.vue';
+    import PageLayaout from '@/layouts/PageLayaout.vue';
 
-const currentIndex = ref(-1);
+    import { VueWriter } from 'vue-writer';
+    import { ref } from 'vue';
 
-const currentImage = ref({
-    src: 'crop-top-mariposa.png',
-    alt: 'Buso azul'
-});
+    const currentIndex = ref(-1);
 
-const images = [
-    {
-        src: 'buso-azul.png',
+    const currentImage = ref({
+        src: 'crop-top-mariposa.png',
         alt: 'Buso azul'
-    },
-    {
-        src: 'maniqui-inicio.png',
-        alt: 'Maniquí'
-    }
-];
+    });
 
-const prompts = [
-    'Sudadera azul marino con estampado de surfistas en olas y un volcán humeante de fondo. Hecha de algodón suave y cómodo, ideal para días frescos. Diseño moderno y juvenil con bolsillos frontales y detalles en contraste en mangas y dobladillo.',
-    'Sudadera con capucha negra y el logo del grupo en el pecho, combinada con jeans rasgados y zapatillas blancas. Este look refleja una esencia juvenil y moderna.'
-]
+    const images = [
+        {
+            src: 'buso-azul.png',
+            alt: 'Buso azul'
+        },
+        {
+            src: 'maniqui-inicio.png',
+            alt: 'Maniquí'
+        }
+    ];
 
-const typed = () => {
+    const prompts = [
+        'Sudadera azul marino con estampado de surfistas en olas y un volcán humeante de fondo. Hecha de algodón suave y cómodo, ideal para días frescos. Diseño moderno y juvenil con bolsillos frontales y detalles en contraste en mangas y dobladillo.',
+        'Sudadera con capucha negra y el logo del grupo en el pecho, combinada con jeans rasgados y zapatillas blancas. Este look refleja una esencia juvenil y moderna.'
+    ]
 
-    if (currentIndex.value === prompts.length - 1) {
-        currentIndex.value = 0;
-    } else {
-        currentIndex.value++;
-    }
+    const typed = () => {
 
-    currentImage.value = images[currentIndex.value];
-};
+        if (currentIndex.value === prompts.length - 1) {
+            kz
+            currentIndex.value = 0;
+        } else {
+            currentIndex.value++;
+        }
+
+        currentImage.value = images[currentIndex.value];
+    };
 
 
 

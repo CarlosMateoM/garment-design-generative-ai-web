@@ -1,8 +1,14 @@
 <template>
 
-    <VueFinalModal v-model="visible" :click-to-close="false"  content-transition="vfm-fade" overlay-transition="vfm-fade" teleport-to="body"
+    <VueFinalModal 
+        v-model="visible" 
+        :click-to-close="false" 
+        content-transition="vfm-fade" 
+        overlay-transition="vfm-fade" 
+        teleport-to="body"
         class="flex justify-center items-center bg-black bg-opacity-50"
-        content-class="flex flex-col  m-2 p-4 max-w-5xl bg-slate-900 rounded-lg space-y-2">
+        content-class="flex flex-col m-2 p-4 max-w-5xl bg-slate-900 rounded-lg space-y-2"
+    >
 
         <h2 class="text-4xl text-white font-semibold" >Email Verificado Correctamente</h2>
         

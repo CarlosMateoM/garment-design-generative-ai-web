@@ -7,6 +7,11 @@
             <LoadingIcon class="h-4 w-4 ml-2 fill-slate-800"/>
         </template>
 
+
+        <slot v-else >
+            
+        </slot>
+
     </button>
 </template>
 <script setup>
