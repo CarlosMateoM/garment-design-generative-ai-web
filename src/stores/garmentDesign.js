@@ -5,9 +5,23 @@ import { ref } from "vue";
 
 export const useGarmentDesignStore = defineStore("garmentDesign", () => {
 
+    const design = ref(null);
+
     const garmentDesigns = ref([]);
-    const garmentDesign = ref(null);
-    const garmentDesignsChat = ref([]);
+    const userGarmentDesigns = ref({});
+
+    const {
+        request: getUserGarmentDesigns,
+        loading: userGarmentDesignsLoading,
+        errors: userGarmentDesignsErrors,
+        clearErrors: clearUserGarmentDesignsErrors
+    } = useRequest(
+        async (id, params = '') => {
+            const response = await axios.get(`garment-designs?filter[user_id]=${id}&${params}`);
+            userGarmentDesigns.value = response.data;
+            return response;
+        }
+    );
 
     const {
         request: getGarmentDesigns,
@@ -22,15 +36,15 @@ export const useGarmentDesignStore = defineStore("garmentDesign", () => {
     );
 
     const {
-        request: getGarmentDesign,
-        loading: garmentDesignLoading,
-        errors: garmentDesignErrors,
-        clearErrors: clearGarmentDesignErrors
+        request: getDesign,
+        loading: getDesignLoading,
+        errors: getDesignErrors,
+        clearErrors: clearGetDesignErrors
     } = useRequest(
-        async (id) => {
-            const response = await axios.get(`garment-designs/${id}`);
-            garmentDesign.value = response.data;
-            return response;
+        async (id, params) => {
+            const response = await axios.get(`designs/${id}?${params}`);
+            design.value = response.data;
+            return response;url
         }
     );
 
@@ -74,7 +88,11 @@ export const useGarmentDesignStore = defineStore("garmentDesign", () => {
 
     return {
 
-        garmentDesignsChat,
+        getUserGarmentDesigns,
+        userGarmentDesigns,
+        userGarmentDesignsLoading,
+        userGarmentDesignsErrors,
+        clearUserGarmentDesignsErrors,
 
         garmentDesigns,
         getGarmentDesigns,
@@ -82,10 +100,11 @@ export const useGarmentDesignStore = defineStore("garmentDesign", () => {
         garmentDesignsErrors,
         clearGarmentDesignsErrors,
 
-        garmentDesign,
-        getGarmentDesign,
-        garmentDesignLoading,
-        garmentDesign,
+        getDesign,
+        design,
+        getDesignLoading,
+        getDesignErrors,
+        clearGetDesignErrors,
 
         createGarmentDesign,
         createGarmentDesignLoading,

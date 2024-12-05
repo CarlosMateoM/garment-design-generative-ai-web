@@ -102,19 +102,6 @@ const clearCriteriaHelp = () => {
     criteriaHelp.value = null;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const emits = defineEmits(['closeSurveyModal']);
 
 

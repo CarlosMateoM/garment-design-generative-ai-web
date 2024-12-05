@@ -4,7 +4,7 @@
             <section class="relative flex gap-4 flex-wrap h-screen justify-between flex-col p-4 overflow-hidden">
                 <div class="flex w-4/6 max-md:w-full justify-between h-full flex-col ">
                     <div ref="scrollableDiv" class=" overflow-y-scroll mb-4 rounded-md pr-2">
-                        <div v-for="image in garmentDesign.garmentDesignsChat" :key="image.id"
+                        <div v-for="image in garmentDesign.getUserGarmentDesigns" :key="image.id"
                             class="bg-gray-100 mt-4 rounded-md p-4">
                             <img @click="openImageModal(image)" class="mx-auto w-2/3 rounded-md" :key="image.id"
                                 :src="image.url" alt="Placeholder" />
@@ -166,7 +166,7 @@ const generateImage = async () => {
     try {
         genearteGarmentDesignButtonMessage.value = "Generando prenda...";
         await garmentDesign.createGarmentDesign(form.value);
-        garmentDesign.createGarmentDesignLoading = true;
+        garmentDesign.createGarmentDesignLoading = false;
         genearteGarmentDesignButtonMessage.value = "Optimizando imagen...";
     } catch (error) {
         garmentDesign.createGarmentDesignLoading = false;
@@ -181,7 +181,7 @@ const generateImage = async () => {
 
 const getImages = async () => {
     const response = await garmentDesign.getGarmentDesigns(`filter[user_id]=${auth.user.id}`);
-    garmentDesign.garmentDesignsChat = response.data.data;
+    garmentDesign.getUserGarmentDesigns = response.data.data;
     scrollToBottom();
 }
 
@@ -193,14 +193,14 @@ onMounted(async () => {
     echo.private(`image-processed.${auth.user.id}`)
         .listen('ImageProcessedEvent', async (e) => {
             garmentDesign.createGarmentDesignLoading = false;
-            garmentDesign.garmentDesignsChat.push(e.garmentDesign);
+            garmentDesign.getUserGarmentDesigns.push(e.garmentDesign);
             genearteGarmentDesignButtonMessage.value = "Crear prenda";
             await survey.getSurveyStatus();
             await auth.getUser();
             scrollToBottom();
         });
 
-    if (garmentDesign.garmentDesignsChat.length === 0) {
+    if (garmentDesign.getUserGarmentDesigns.length === 0) {
         await getImages();
     }
 

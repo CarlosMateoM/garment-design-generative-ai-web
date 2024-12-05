@@ -12,7 +12,12 @@ const router = createRouter({
     {
       path: '/home',
       name: 'Root',
-      component: () => import('@/views/ExplorerView2.vue')
+      component: () => import('@/views/HomeView.vue')
+    },
+    {
+      path: '/crear-diseno',
+      name: 'generateDesign',
+      component: () => import('@/views/design/Index.vue')
     },
     {
       path: '/explore',
@@ -39,19 +44,22 @@ const router = createRouter({
       name: 'GarmentDesign',
       preserveScrollPosition: true,
       component: () => import('@/views/ImageGenerationView.vue')
-      
+
     },
     {
       path: '/perfil',
       name: 'Profile',
       component: () => import('@/views/ProfileView.vue')
-      
     },
-    
     {
-      path: '/:pathMatch(.*)*',
-      name: 'NotFound',
-      
+      path: '/diseno/:id',
+      name: 'design.show',
+      component: () => import('@/views/design/Design.vue')
+    },
+    {
+      path: '/diseno/procesando',
+      name: 'design.processing',
+      component: () => import('@/views/design/DesignProcessing.vue')
     }
   ]
 })

@@ -1,5 +1,5 @@
 <template>
-    <main class=" flex h-screen justify-center bg-home-radial-gradient items-center">
+    <main class=" flex h-screen justify-center bg-ocean-night items-center">
 
         <div class="w-10/12 md:w-2/5 bg-slate-900 rounded-xl  px-4">
 

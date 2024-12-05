@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'home-radial-gradient': 'radial-gradient(circle, #346482 0%, #0f172a 95%)',
+        'ocean-night': 'radial-gradient(circle, #346482 0%, #0f172a 95%)',
       }
     },
   },

@@ -42,7 +42,7 @@ const showImage = (image) => {
 }
 
 const getGarmentDesigns = async () => {
-    const response = await garmentDesign.getGarmentDesigns(`sort=-created_at&page=2`);
+    const response = await garmentDesign.getGarmentDesigns(`sort=-created_at&include=images`);
     garmentDesign.garmentDesigns = response.data;
 }
 

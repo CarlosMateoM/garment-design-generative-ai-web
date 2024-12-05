@@ -56,7 +56,7 @@ const showImage = (image) => {
 }
 
 const getGarmentDesigns = async () => {
-    const response = await garmentDesign.getGarmentDesigns(`sort=-created_at`);
+    const response = await garmentDesign.getGarmentDesigns(`include=images&sort=-created_at`);
     garmentDesign.garmentDesigns = response.data.data;
 }
 

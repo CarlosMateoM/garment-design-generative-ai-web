@@ -15,9 +15,11 @@ export const useAuthStore = defineStore("auth", () => {
         clearErrors: clearUserErrors
     } = useRequest(
         async () => {
-            const response = await axios.get("user");
-            user.value = response.data;
-            return response;
+            if(!user.value){
+                const response = await axios.get("user");
+                user.value = response.data;
+                return response;
+            } 
         }
     );
    
