@@ -2,7 +2,7 @@
     <PageLayaout>
         <template v-slot:main>
 
-            <div class="flex h-screen">
+            <div class="flex flex-wrap md:flex-nowrap ">
 
                 <aside class="flex flex-col">
 
@@ -52,23 +52,15 @@
 
                 </aside>
 
-                <main class="w-full">
+                <main class="w-full ">
 
-                   <PromptInput 
-                        ref="promptInput"
-                        @show-prompt-suggestion-card="showPromptSuggestionCard" 
-                    />
+                    <PromptInput ref="promptInput" @show-prompt-suggestion-card="showPromptSuggestionCard" />
 
-                    <PromptSuggestionCard 
-                        ref="promptSuggestionCard"
-                        @show-prompt-suggestion="promptInput.showPromptSuggestion()"
-                    />
+                    <PromptSuggestionCard ref="promptSuggestionCard"
+                        @show-prompt-suggestion="promptInput.showPromptSuggestion()" />
 
                 </main>
             </div>
-
-
-
 
         </template>
     </PageLayaout>
@@ -80,8 +72,9 @@
     import PromptSuggestionCard from '@/views/design/PromptSuggestionCard.vue';
     import { useAuthStore } from '@/stores/auth';
     import { useGarmentDesignStore } from '@/stores/garmentDesign';
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, onUnmounted } from 'vue';
     import { storeToRefs } from 'pinia';
+
 
     const auth = useAuthStore();
     const garmentDesign = useGarmentDesignStore();
@@ -109,6 +102,13 @@
 
 
     onMounted(async () => {
+
+        if(!auth.user) {
+            await auth.getUser();
+        }
+
         await getUserGarmentDesigns(auth.user.id);
+    
     });
+
 </script>

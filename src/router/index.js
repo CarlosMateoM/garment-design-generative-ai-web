@@ -1,23 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import Index from '@/views/design/Index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: () => import('@/views/ExplorerView2.vue')
-    },
-    {
-      path: '/home',
-      name: 'Root',
+      name: 'home',
       component: () => import('@/views/HomeView.vue')
     },
     {
-      path: '/crear-diseno',
-      name: 'generateDesign',
-      component: () => import('@/views/design/Index.vue')
+      path: '/generations',
+      name: 'generations',
+      component: Index
     },
     {
       path: '/explore',
@@ -40,16 +35,9 @@ const router = createRouter({
       component: () => import('@/views/auth/VerifyEmailView.vue')
     },
     {
-      path: '/generacion-de-prendas',
-      name: 'GarmentDesign',
-      preserveScrollPosition: true,
-      component: () => import('@/views/ImageGenerationView.vue')
-
-    },
-    {
       path: '/perfil',
       name: 'Profile',
-      component: () => import('@/views/ProfileView.vue')
+      component: () => import('@/views/auth/ProfileView.vue')
     },
     {
       path: '/diseno/:id',
@@ -62,6 +50,6 @@ const router = createRouter({
       component: () => import('@/views/design/DesignProcessing.vue')
     }
   ]
-})
+});
 
 export default router

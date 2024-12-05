@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-slate-900 p-4 m-2 text-white rounded">
+    <section v-if="auth.user" class="bg-slate-900 p-4 m-2 mr-0 mb-0 text-white rounded">
 
         <div class="flex items-center ">
 

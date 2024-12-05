@@ -15,7 +15,7 @@
 
                         <div class="mb-4">
 
-                            <RouterLink :to="{ name: 'generateDesign' }"
+                            <RouterLink :to="{ name: 'generations' }"
                                 class="text-gray-800 bg-white hover:bg-white/90 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                 Regresar
                             </RouterLink>

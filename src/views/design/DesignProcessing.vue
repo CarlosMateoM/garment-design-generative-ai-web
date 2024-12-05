@@ -48,7 +48,7 @@
     import LoadingIcon from '@/components/icons/LoadingIcon.vue';
     import { ref, onMounted, onUnmounted } from 'vue';
     import { useAuthStore } from '@/stores/auth';
-    import { initializeEcho } from '@/echo';
+    import echo from '@/echo';
     import router from '@/router';
 
     const text = ref('Por favor, espere...');
@@ -56,8 +56,6 @@
     const auth = useAuthStore();
 
     const show = ref(false);
-
-    const echo = initializeEcho();
 
 
     onMounted(async () => {

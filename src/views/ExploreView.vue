@@ -2,8 +2,7 @@
     <PageLayaout>
         <template v-slot:main>
             <main class="pt-12" style="background: radial-gradient(circle at center 40% , #346482 0%, #0f172a 95%)" >
-                
-                    
+                  
                     <h2
                     class="text-center uppercase text-4xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
                         Explora el Mundo de las Prendas Generadas por AI
@@ -24,12 +23,9 @@
     </PageLayaout>
 </template>
 <script setup>
-import PageLayaout from '@/layouts/PageLayaout.vue';
-import { VueFinalModal } from 'vue-final-modal'
 import { useGarmentDesignStore } from '@/stores/garmentDesign';
 import ImageDesignCard from '@/components/ImageDesignCard.vue';
-import ImageDesignModal from '@/components/ImageDesignModal.vue';
-import RefreshIcon from '@/components/icons/RefreshIcon.vue';
+import PageLayaout from '@/layouts/PageLayaout.vue';
 import { ref, onMounted } from 'vue';
 
 const garmentDesign = useGarmentDesignStore();
@@ -48,6 +44,6 @@ const getGarmentDesigns = async () => {
 
 onMounted(async () => {
     if (garmentDesign.garmentDesigns.length === 0)
-        await getGarmentDesigns();
+         await getGarmentDesigns();
 });
 </script>
