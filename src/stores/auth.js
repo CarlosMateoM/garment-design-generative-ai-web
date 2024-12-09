@@ -44,7 +44,7 @@ export const useAuthStore = defineStore("auth", () => {
                 router.push({ name: "home" });
             }
 
-            echo.private(`image-processed.${auth.user.id}`)
+            echo.private(`image-processed.${user.value.id}`)
                 .listen('ImageProcessedEvent', async (e) => {
                     router.push({ name: 'design.show', params: { id: e.garmentDesign.id } });
                 });
