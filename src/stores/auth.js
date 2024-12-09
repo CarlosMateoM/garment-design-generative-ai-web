@@ -90,9 +90,9 @@ export const useAuthStore = defineStore("auth", () => {
         clearErrors: clearLogoutErrors
     } = useRequest(async () => {
         echo.leaveChannel('image-processed');
+        router.push({ name: "home" });
         await axios.post("logout");
         user.value = null;
-        router.push({ name: "Home" });
     });
 
 
