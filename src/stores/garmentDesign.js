@@ -44,7 +44,7 @@ export const useGarmentDesignStore = defineStore("garmentDesign", () => {
         async (id, params) => {
             const response = await axios.get(`designs/${id}?${params}`);
             design.value = response.data;
-            return response;url
+            return response;
         }
     );
 

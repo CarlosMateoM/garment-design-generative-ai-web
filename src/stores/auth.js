@@ -1,5 +1,6 @@
 import { useRequest } from "@/composables/useRequest";
 import { defineStore } from "pinia";
+import echo from "@/echo";
 import router from "@/router";
 import axios from "@/axios";
 import { ref } from "vue";
@@ -15,14 +16,14 @@ export const useAuthStore = defineStore("auth", () => {
         clearErrors: clearUserErrors
     } = useRequest(
         async () => {
-            if(!user.value){
+            if (!user.value) {
                 const response = await axios.get("user");
                 user.value = response.data;
                 return response;
-            } 
+            }
         }
     );
-   
+
     const {
         request: login,
         loading: loginLoading,
@@ -31,17 +32,22 @@ export const useAuthStore = defineStore("auth", () => {
     } = useRequest(
         async (form) => {
             await axios.get("sanctum/csrf-cookie");
-            
+
             const response = await axios.post("login", form);
 
             await getUser();
 
-            if(user.value.email_verified_at === null){
-                
-                router.push({name: "VerifyEmail"});
+            if (user.value.email_verified_at === null) {
+
+                router.push({ name: "VerifyEmail" });
             } else {
-                router.push({name: "home"});
+                router.push({ name: "home" });
             }
+
+            echo.private(`image-processed.${auth.user.id}`)
+                .listen('ImageProcessedEvent', async (e) => {
+                    router.push({ name: 'design.show', params: { id: e.garmentDesign.id } });
+                });
 
             return response;
         }
@@ -57,7 +63,7 @@ export const useAuthStore = defineStore("auth", () => {
             await axios.get("sanctum/csrf-cookie");
             const response = await axios.post("register", form);
             user.value = response.data;
-            router.push({name: "VerifyEmail"});
+            router.push({ name: "VerifyEmail" });
             return response;
         }
     );
@@ -69,13 +75,13 @@ export const useAuthStore = defineStore("auth", () => {
         clearErrors: clearSendVerificationEmailErrors
     } = useRequest(
         async () => {
-            const response = await axios.post("email/verification-notification");   
-            if(response.data.status === "already-verified"){
-                router.push({name: "Home"});
+            const response = await axios.post("email/verification-notification");
+            if (response.data.status === "already-verified") {
+                router.push({ name: "Home" });
             }
         }
     )
-    
+
 
     const {
         request: logout,
@@ -83,9 +89,10 @@ export const useAuthStore = defineStore("auth", () => {
         errors: logoutErrors,
         clearErrors: clearLogoutErrors
     } = useRequest(async () => {
+        echo.leaveChannel('image-processed');
         await axios.post("logout");
         user.value = null;
-        router.push({name: "Home"});
+        router.push({ name: "Home" });
     });
 
 

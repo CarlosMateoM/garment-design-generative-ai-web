@@ -52,10 +52,7 @@
 
     const show = ref(false);
 
-
     onMounted(async () => {
-
         show.value = true;
     });
-
 </script>

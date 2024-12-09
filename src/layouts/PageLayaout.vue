@@ -103,7 +103,6 @@
     const route = useRoute();
     const auth = useAuthStore();
 
-
     const isMenuOpen = ref(false);
     
     const toggleMenu = () => {
@@ -113,8 +112,4 @@
     const closeMenu = () => {
         isMenuOpen.value = false;
     }
-
-
-
-
 </script>

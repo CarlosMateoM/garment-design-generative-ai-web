@@ -12,13 +12,14 @@
    const auth = useAuthStore();
 
    onMounted(async () => {
-      await auth.getUser();
-      echo.private(`image-processed.${auth.user.id}`)
+      const response = await auth.getUser();
+
+      if(response.status === 200){
+         echo.private(`image-processed.${auth.user.id}`)
          .listen('ImageProcessedEvent', async (e) => {
             router.push({ name: 'design.show', params: { id: e.garmentDesign.id } });
          });
-
-     
+      }     
    });
 
    onUnmounted(() => {
