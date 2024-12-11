@@ -56,7 +56,7 @@
                     <div class="flex items-center justify-between p-4 border-b border-slate-700">
                         <h2 class="text-lg font-semibold">Menú</h2>
                         <button @click="closeMenu" class="text-white">
-                            <CloseIcon />
+                            <CloseErrorIcon />
                         </button>
                     </div>
                     <ul class="flex flex-col p-4 space-y-4">
@@ -95,6 +95,9 @@
     import TShirtIcon from '@/components/icons/TShirtIcon.vue';
     import MobileMenuIcon from '@/components/icons/MobileMenuIcon.vue';
     import CreateDesignIcon from '@/components/icons/CreateDesignIcon.vue';
+    import CloseErrorIcon from '@/components/icons/CloseErrorIcon.vue';
+    import LoginIcon from '@/components/icons/LoginIcon.vue';
+    
     import { ref } from 'vue';
 
     import { useRoute } from 'vue-router';

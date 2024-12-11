@@ -77,7 +77,7 @@ export const useAuthStore = defineStore("auth", () => {
         async () => {
             const response = await axios.post("email/verification-notification");
             if (response.data.status === "already-verified") {
-                router.push({ name: "Home" });
+                router.push({ name: "home" });
             }
         }
     )

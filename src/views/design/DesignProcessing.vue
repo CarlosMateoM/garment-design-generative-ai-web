@@ -2,9 +2,9 @@
     <PageLayaout>
         <template v-slot:main>
 
-            <div class="flex h-screen">
+            <div class="flex flex-col md:flex-row">
 
-                <aside class="flex flex-col">
+                <aside class="flex flex-col mr-2">
                     <UserCard />
                 </aside>
 
@@ -16,7 +16,7 @@
                         leave-from-class="transform opacity-100 scale-100"
                         leave-to-class="transform opacity-0 scale-95">
 
-                        <section v-if="show" class="flex justify-center h-screen bg-slate-900 ">
+                        <section v-if="show" class="flex justify-center h-screen bg-slate-900 mt-2 ">
                             <div class="flex flex-col items-center  rounded m-2 p-4">
                                 <h2
                                     class="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200 mb-16">
@@ -26,7 +26,7 @@
                                 <div class="relative">
 
                                     <div
-                                        class="w-80 h-80 rounded-full animate-spin bg-gradient-to-r to-teal-200 from-lime-200">
+                                        class="size-40  md:size-80 rounded-full animate-spin bg-gradient-to-r to-teal-200 from-lime-200">
                                         <div
                                             class="absolute top-1 left-1 right-1 bottom-1 bg-slate-900/80 rounded-full">
                                         </div>

@@ -1,9 +1,7 @@
 <template>
     <PageLayaout>
         <template v-slot:main>
-
             <main>
-
                 <section class="flex flex-col justify-center my-8 space-y-6">
                     <h2
                         class="text-center uppercase text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-teal-200 from-lime-200">
@@ -169,7 +167,6 @@
     const typed = () => {
 
         if (currentIndex.value === prompts.length - 1) {
-            kz
             currentIndex.value = 0;
         } else {
             currentIndex.value++;
@@ -177,9 +174,6 @@
 
         currentImage.value = images[currentIndex.value];
     };
-
-
-
 </script>
 
 <style>

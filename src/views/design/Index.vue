@@ -2,9 +2,9 @@
     <PageLayaout>
         <template v-slot:main>
 
-            <div class="flex flex-wrap md:flex-nowrap ">
+            <div class="flex flex-col md:flex-row">
 
-                <aside class="flex flex-col">
+                <aside class="flex flex-col mr-2 md:mr-0">
 
 
                     <UserCard />
@@ -52,7 +52,7 @@
 
                 </aside>
 
-                <main class="w-full ">
+                <main class="w-full">
 
                     <PromptInput ref="promptInput" @show-prompt-suggestion-card="showPromptSuggestionCard" />
 
