@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const axios = Axios.create({
-    baseURL: "https://api.designfashionai.com/api/v1",
+    baseURL: "http://localhost:8000/api/v1",
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

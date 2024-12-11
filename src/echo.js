@@ -3,10 +3,10 @@ import axios from '@/axios';
 
 export default new Echo({
     broadcaster: 'reverb',
-    key: 'ykoqn4dupoltad6jty20',
-    wsHost: "api.designfashionai.com",
-    wsPort: 443,
-    forceTLS: true,
+    key: 'vemblmovqvr9lhdtagt5',
+    wsHost: "localhost",
+    wsPort: 8080,
+    forceTLS: false,
     encrypted: true,
     disableStats: true,
     authorizer: (channel, options) => {
